@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<title>DocReader Online Converter</title>
+
+	<link rel="stylesheet" type="text/css" href="/css/site.css" />
+</head>
+<body>
+
+<a name="top"></a>
+
+<h1>Package: XSLT</h1>
+
+<p style="margin-bottom: 10px; padding-bottom: 5px"><a href="#XSLT">XSLT</a><br />
+</p>
+
+
+
+<a name="XSLT"></a><table width="98%" cellpadding="3" border="0" cellspacing="0">
+									<tr>
+										<td width="70%" class="head">
+											<h1>public class XSLT </h1>
+										</td>
+										<td width="30%" class="head" align="right">
+											<a href="/index/docreader_view" class="textured">Return to package list</a>
+										</td>
+									</tr>
+								</table>
+
+<p><strong>Version: 1.0 <br />
+Date: 2001-09-27 11:05:37</strong></p>
+
+
+
+	<p><strong>Author: John Luxford &lt;<a href="mailto: lux@simian.ca">lux@simian.ca</a>&gt; &lt;<a href="http://www.simian.ca/">http://www.simian.ca/</a>&gt;</strong></p>
+
+
+
+	<pre style="margin-bottom: 10px; padding-bottom: 5px"><strong>Summary</strong>
+XSLT is a very minimalistic wrapper around PHP's Sablotron functions.
+The benefits in a class such as this are that a) it's Object Oriented,
+and b) the Sablotron functions have a big &quot;WARNING: EXPERIMENTAL&quot; in
+the documentation, so if one was to code an application using these
+method calls as opposed to hard-coding the PHP functions, when the
+names change, you simply have to upgrade the class and not your code.
+
+</pre>
+
+
+
+	<pre style="margin-bottom: 10px; padding-bottom: 5px"><strong>Example</strong>
+$xslt = new XSLT;
+
+$xmldata = join ('', file ('somefile.xml'));
+$xsldata = join ('', file ('stylesheet.xsl'));
+
+if ($newdata = $xslt-&gt;process ($xsldata, $xmldata)) {
+	echo $newdata;
+} else {
+	echo $xslt-&gt;errno . ': ' . $xslt-&gt;error;
+}
+
+</pre>
+
+  <table width="98%" cellpadding="3" border="0" cellspacing="0"><tr><td width="100%" class="head"><h1>Properties</h1></td></tr></table>
+
+<h2 style="font-weight: normal">public resource <strong>$handle</strong></h2>
+
+
+<pre style="margin-bottom: 10px; padding-bottom: 5px"><strong>Summary</strong>
+This is the XSLT processor resource returned by the
+xslt_create () function.
+
+</pre>
+
+
+
+  <table width="98%" cellpadding="3" border="0" cellspacing="0"><tr><td width="100%" class="head"><h1>Methods</h1></td></tr></table>
+
+<h2 style="font-weight: normal">public <strong>XSLT</strong> () -> void</h2>
+
+
+<pre style="margin-bottom: 10px; padding-bottom: 5px"><strong>Summary</strong>
+Constructor method.
+
+</pre>
+
+
+
+  <h2 style="font-weight: normal">public <strong>process</strong> (string <strong>$xsl_data</strong>, string <strong>$xml_data</strong>) -> string </h2>
+
+
+<pre style="margin-bottom: 10px; padding-bottom: 5px"><strong>Summary</strong>
+Transforms the given XML data and XSL stylesheet and
+returns the completed transformation as a string, or returns
+zero (0) in case of failure.
+
+</pre>
+
+
+
+
+
+
+  <h2 style="font-weight: normal">public <strong>error</strong> () -> string </h2>
+
+
+<pre style="margin-bottom: 10px; padding-bottom: 5px"><strong>Summary</strong>
+Returns the current error message.
+
+</pre>
+
+
+
+
+  <h2 style="font-weight: normal">public <strong>errno</strong> () -> string </h2>
+
+
+<pre style="margin-bottom: 10px; padding-bottom: 5px"><strong>Summary</strong>
+Returns the current error number.
+
+</pre>
+
+
+
+
+  <h2 style="font-weight: normal">public <strong>free</strong> () -> void</h2>
+
+
+<pre style="margin-bottom: 10px; padding-bottom: 5px"><strong>Summary</strong>
+Frees the XSL processor.
+
+</pre>
+
+
+
+  
+
+
+
+<p align="right"><a href="#top">Return to Top</a></p>
+
+<hr size="1" noshade="noshade" />
+
+<p align="center">This file was created by <a href="http://www.simian.ca/index/docreader">DocReader</a>, an <a href="http://www.simian.ca/index/open_license">Open Source</a> class documentation system.<br />
+Visit <a href="http://www.simian.ca/">Simian Systems</a> to learn more.</p>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Module short name
+MODULEIDNAME       = xsltwraplib
+
+# Module version number
+MODULEVERSION      = 1.0.0
+
+# Module release date
+MODULEDATE         = 05/10/2001
+
+# Module long description
+MODULEDESCRIPTION  = Very minimalistic wrapper around PHP's Sablotron functions.
+
+# Module dependencies
+MODULEDEPENDENCIES =
+
+# Module suggestions
+MODULESUGGESTIONS  =

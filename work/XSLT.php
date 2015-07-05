@@ -1,0 +1,118 @@
+<?php
+//
+// +----------------------------------------------------------------------+
+// | Sitellite - Content Management System                                |
+// +----------------------------------------------------------------------+
+// | Copyright (c) 2001 Simian Systems                                    |
+// +----------------------------------------------------------------------+
+// | This software is released under the Simian Open Software License.    |
+// | Please see the accompanying file OPENLICENSE for licensing details!  |
+// |                                                                      |
+// | You should have received a copy of the Simian Open Software License  |
+// | along with this program; if not, write to Simian Systems,            |
+// | 101-314 Broadway, Winnipeg, MB, R3C 0S7, CANADA.  The Simian         |
+// | Public License is also available at the following web site           |
+// | address: <http://www.simian.ca/license.php>                          |
+// +----------------------------------------------------------------------+
+// | Authors: John Luxford <lux@simian.ca>                                |
+// +----------------------------------------------------------------------+
+//
+// XSLT is a very minimalistic wrapper around PHP's Sablotron functions.
+// The benefits in a class such as this are that a) it's Object Oriented,
+// and b) the Sablotron functions have a big "WARNING: EXPERIMENTAL" in
+// the documentation, so if one was to code an application using these
+// method calls as opposed to hard-coding the PHP functions, when the
+// names change, you simply have to upgrade the class and not your code.
+//
+
+/*!
+
+<package name="XSLT">
+
+<class	name="XSLT"
+			access="public"
+			date="2001-09-27 11:05:37"
+			version="0.7">
+
+	<author	name="John Luxford"
+				email="lux@simian.ca"
+				url="http://www.simian.ca/" />
+
+	<summary>XSLT is a very minimalistic wrapper around PHP's Sablotron functions.
+The benefits in a class such as this are that a) it's Object Oriented,
+and b) the Sablotron functions have a big "WARNING: EXPERIMENTAL" in
+the documentation, so if one was to code an application using these
+method calls as opposed to hard-coding the PHP functions, when the
+names change, you simply have to upgrade the class and not your code.</summary>
+
+	<example>$xslt = new XSLT;
+
+$xmldata = join ('', file ('somefile.xml'));
+$xsldata = join ('', file ('stylesheet.xsl'));
+
+if ($newdata = $xslt->process ($xsldata, $xmldata)) {
+	echo $newdata;
+} else {
+	echo $xslt->errno . ': ' . $xslt->error;
+}</example> !*/
+
+class XSLT {
+	/*! <property name="handle" access="public" type="resource">
+	<summary>This is the XSLT processor resource returned by the
+	xslt_create () function.</summary>
+	</property> !*/
+	var $handle;
+
+	/*! <method name="XSLT" access="public">
+	<summary>Constructor method.</summary>
+	</method> !*/
+	function XSLT () {
+		$this->handle = @xslt_create ();
+	}
+
+	/*! <method name="process" access="public">
+	<summary>Transforms the given XML data and XSL stylesheet and
+	returns the completed transformation as a string, or returns
+	zero (0) in case of failure.</summary>
+	<param name="xsl_data" type="string" />
+	<param name="xml_data" type="string" />
+	<returns type="string" />
+	</method> !*/
+	function process ($xsl_data = '', $xml_data = '') {
+		if (@xslt_process ($xsl_data, $xml_data, $res)) {
+			return $res;
+		} else {
+			return 0;
+		}
+	}
+
+	/*! <method name="error" access="public">
+	<summary>Returns the current error message.</summary>
+	<returns type="string" />
+	</method> !*/
+	function error () {
+		return @xslt_error ();
+	}
+
+	/*! <method name="errno" access="public">
+	<summary>Returns the current error number.</summary>
+	<returns type="string" />
+	</method> !*/
+	function errno () {
+		return @xslt_errno ();
+	}
+
+	/*! <method name="free" access="public">
+	<summary>Frees the XSL processor.</summary>
+	</method> !*/
+	function free () {
+		@xslt_free ($this->handle);
+		unset ($this->handle);
+	}
+}
+
+/*! </class>
+
+</package> !*/
+
+?>
